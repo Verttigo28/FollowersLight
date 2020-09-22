@@ -1,0 +1,41 @@
+{
+  "name": "followerslight",
+  "version": "1.0.0",
+  "description": "This app will get your new followers and turn on and off your light",
+  "main": "app.js",
+  "productName": "Followers Light",
+  "scripts": {
+    "start": "electron .",
+    "cilinux": "node build.js WINDOWS && node build.js LINUX",
+    "cidarwin": "node build.js MAC",
+    "dist": "cross-env ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES=true node build.js",
+    "dist:win": "npm run dist -- WINDOWS",
+    "dist:mac": "npm run dist -- MAC",
+    "dist:linux": "npm run dist -- LINUX"
+  },
+  "keywords": [],
+  "author": "Baptiste Ferrando",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "jquery": "^3.5.1",
+    "node-hue-api": "^4.0.9",
+    "oauth-electron-twitter": "^1.0.104",
+    "twitter-followers-count": "^1.0.6",
+    "electron-updater": "^4.3.5",
+    "electron-reload": "^1.5.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "electron": "^9.2.1",
+    "electron-builder": "^22.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Verttigo28/FollowersLight.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Verttigo28/FollowersLight.git"
+  },
+  "homepage": "https://github.com/Verttigo28/FollowersLight/#readme"
+}

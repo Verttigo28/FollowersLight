@@ -1,0 +1,24 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+.content {
+    padding-top: 12%;
+}
+
+.bridge {
+    padding-top: 3%;
+}
+
+.twitter {
+    padding-top:2%;
+}
+
+.second {
+    padding-top:3%;
+}
+
+*{
+    font-size: 20px;
+}

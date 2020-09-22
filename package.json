@@ -1,6 +1,6 @@
 {
   "name": "followerslight",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This app will get your new followers and turn on and off your light",
   "main": "app.js",
   "productName": "Followers Light",

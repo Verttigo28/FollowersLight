@@ -21,7 +21,6 @@ let updateWindow = null;
 require("electron-reload")(__dirname);
 app.setName(config.productName)
 
-
 function sendStatusToWindow(text) {
     updateWindow.webContents.send('message', text);
 }

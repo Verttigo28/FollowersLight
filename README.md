@@ -24,7 +24,7 @@ In this V2, an Electron APP has been created and i already implemented several f
 
 ## Code Quality and English mistakes
 
-I'm not the best developper, i do that for fun and a little bit at work, so i know my code is disgusting.<br>
+I'm not the best developer, i do that for fun and a little bit at work, so i know my code is disgusting.<br>
 But please, it's a beta and my only goal is to make the app work, i will recode bad part later.
 My mother tongue is not english, if you see mistakes, tell me (probably a lot). 
 

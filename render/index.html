@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Baptiste Ferrando">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <title>Followers Light - Let your followers control your light</title>
+</head>
+<body onload="checkVitals()">
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#navbarsFL" aria-controls="navbarsFL" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsFL">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="bridge.html">Hue Bridge</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="twitter.html">Twitter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="instagram.html">Instagram</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="twitch.html">Twitch</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tiktok.html">TikTok</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<div class="container-fluid mt-5">
+    <div class="row content">
+
+        <main role="main" class="col-sm-9 mx-auto col-md-10 pt-3">
+
+            <section class="row text-center">
+                <div class="col-sm-3 placeholder">
+                    <img id="hueLinkImg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg==" width="150"
+                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                    <h4>Hue Bridge</h4>
+                    <div id="hueLink" class="text-muted">Not Linked</div>
+                </div>
+                <div class="col-sm-3 placeholder">
+                    <img id="twitterImage" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg==" width="150"
+                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                    <h4>Twitter</h4>
+                    <span id="twitterSpan" class="text-muted">Desactivated</span>
+                </div>
+                <div class="col-sm-3 placeholder">
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg==" width="150"
+                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                    <h4>Instagram</h4>
+                    <span class="text-muted">Deactivated</span>
+                </div>
+                <div class="col-sm-3 placeholder">
+                    <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg==" width="150"
+                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                    <h4>Twitch</h4>
+                    <span class="text-muted">Deactivated</span>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
+</body>
+<script src="JS/index.js"></script>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Baptiste Ferrando">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <title>Followers Light - Let your followers control your light</title>
+</head>
+<body onload="checkPairingStatus()">
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#navbarsFL" aria-controls="navbarsFL" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsFL">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="bridge.html">Hue Bridge <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="twitter.html">Twitter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="instagram.html">Instagram</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="twitch.html">Twitch</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tiktok.html">TikTok</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<div class="container-fluid mt-5">
+
+    <div class="row bridge">
+        <div class="row col pt-3 text-center d-flex justify-content-center">
+            <div class=" placeholder">
+                <img id="hueLinkImg"
+                     src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg=="
+                     width="250"
+                     height="250" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                <h4 id="pairingTitle">Hue Bridge : Not linked</h4>
+                <br>
+                <div id="text1" class="text-muted">Click on the connect button to pair your Hue Bridge</div>
+                <div id="text2" class="text-muted">You need to press the Hue pairing button before that</div>
+                <br>
+                <button id="pairingBTN" class="btn btn-outline-primary" onclick="toggle()">Connect</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="JS/bridge.js"></script>
+</html>

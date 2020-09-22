@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Baptiste Ferrando">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <title>Followers Light - Let your followers control your light</title>
+</head>
+<body onload="displayTwitterInfo()">
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#navbarsFL" aria-controls="navbarsFL" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsFL">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="bridge.html">Hue Bridge</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="twitter.html">Twitter <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="instagram.html">Instagram</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="twitch.html">Twitch</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tiktok.html">TikTok</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<h1 hidden id="notLink" class="mt-5">You need to pair a Hue Bridge</h1>
+
+<div id="global" class="container mt-5 twitter text-center">
+
+    <h1>Twitter</h1>
+
+    <div class="row">
+        <div class="col">
+            <div id="subtitle" class="text-muted mb-3">You need to connect your Twitter account before starting the
+                bot
+            </div>
+            <button id="connectTwitterButton" class="btn btn-outline-primary mt-2" onclick="connectTwitter()">Connect
+                Twitter
+            </button>
+            <input type="hidden" id="inputUsername" placeholder="username" type="text"
+                   class="form-control w-25 h-50 text-center d-inline-block">
+        </div>
+    </div>
+
+    <div class="row text-center second">
+        <div class="col">
+
+            <select class="form-control w-25 d-inline-block mb-3" id="lightSelector">
+                <option disabled selected value="1">Select light</option>
+            </select>
+
+            <div class="text-muted">Followers counts <strong id="counts">0</strong></div>
+            <div class="text-muted">Followers in pipeline <strong id="pipeline">0</strong></div>
+            <div class="text-muted">Last color displayed <strong id="colorDisplay">0</strong></div>
+            <div class="text-muted">Last check <strong id="lastCheck">never</strong></div>
+            <button id="toggleBot" class="btn btn-outline-primary btn-lg mt-4" onclick="toggleBot()">
+                Start Bot
+            </button>
+            <button id="disconnect" class="btn btn-outline-primary btn-lg mt-4" onclick="disconnect()">
+                Disconnect twitter
+            </button>
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="JS/twitter.js"></script>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+</html>

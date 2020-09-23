@@ -9,16 +9,7 @@ autoUpdater.on('error', (error) => {
 })
 
 autoUpdater.on('update-available', () => {
-    dialog.showMessageBox({
-        type: 'info',
-        title: 'Found Updates',
-        message: 'Found updates, do you want update now?',
-        buttons: ['Sure', 'No']
-    }, (buttonIndex) => {
-        if (buttonIndex === 0) {
             autoUpdater.downloadUpdate()
-        }
-    })
 })
 
 autoUpdater.on('update-not-available', () => {
@@ -35,6 +26,15 @@ autoUpdater.on('update-downloaded', () => {
     }, () => {
         setImmediate(() => autoUpdater.quitAndInstall())
     })
+})
+
+autoUpdater.on('download-progress', (progressObj) => {
+    if(progressObj.percent == 1 || progressObj.percent == 10 || progressObj.percent == 50 || progressObj.percent == 100) {
+        dialog.showMessageBox({
+            title: 'Update',
+            message: progressObj.progressBar
+        })
+    }
 })
 
 ipcMain.on("askForUpdate", async (event) => {

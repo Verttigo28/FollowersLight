@@ -13,13 +13,13 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v1
-        
+
       - name: create-json
         uses: jsdaniell/create-json@1.1.2
         with:
           name: config.json
           json: ${{ secrets.CONFIG }}
-          dir: /config/
+          dir: config/
 
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1

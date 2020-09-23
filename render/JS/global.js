@@ -1,5 +1,11 @@
 'use strict'
 
 function checkUpdates() {
-    window.api.send("askForUpdates");
+    window.api.send("askForUpdate");
 }
+
+window.api.receive("callbackUpdate", (available) => {
+    if (!available) {
+        alert("No update available, check back later")
+    }
+});

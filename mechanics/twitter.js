@@ -1,7 +1,7 @@
 const twitterFollowersCount = require("twitter-followers-count");
 const v3 = require("node-hue-api").v3;
 const LightState = v3.lightStates.LightState;
-const app = require("../app")
+const listener = require("./listener")
 
 const config = require("../config/config.json")
 
@@ -39,7 +39,7 @@ function getFollowersCount() {
             turnOffLight();
             clearInterval(refreshLight)
             clearInterval(refreshFollower)
-            app.sendTwitterData(false, {message: "Unknown user"});
+            listener.sendTwitterData(false, {message: "Unknown user"});
         }
     })();
 }
@@ -85,7 +85,7 @@ exports.start = (bridgeUser, Token, TokenSecret, light, twitterUser) => {
     LIGHT_ID = light;
     started = true;
     user = twitterUser;
-    
+
     getTwitterFollowers = twitterFollowersCount({
         consumer_key: config.consumer_key,
         consumer_secret: config.consumer_secret,
@@ -105,7 +105,7 @@ exports.start = (bridgeUser, Token, TokenSecret, light, twitterUser) => {
     //Launch Light system
     refreshLight = setInterval(() => {
         changeLightColor();
-        app.sendTwitterData(true, {
+        listener.sendTwitterData(true, {
             followerCount: fansCount,
             user,
             pipeline,

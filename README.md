@@ -14,7 +14,7 @@
 
 I was browsing TikTok last night and a bunch of guys said "I created a bot that turn on and off my light when you sub"...<br>
 You could clearly see that they were lying so... i did it cause yolo. (Sub to @Verttigo_ :)
-In the "OLD" folder you can see the V1 that worked, please read the README.MD file in it, it contains a lot of info.
+In the "OLD" folder you can see the V1 that worked, please read the README.MD file in it, it contains a lot of infos.
 
 ## BETA - Use with care
 

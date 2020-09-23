@@ -14,6 +14,11 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v1
 
+      - name: Content list
+        uses: enricomarino/actions@v2
+        with:
+          source: /
+
       - name: create-json
         uses: jsdaniell/create-json@1.1.2
         with:

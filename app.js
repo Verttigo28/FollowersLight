@@ -16,49 +16,40 @@ const auth = require("oauth-electron-twitter")
 const {autoUpdater} = require("electron-updater");
 
 let mainWindow = null;
-let updateWindow = null;
 
 require("electron-reload")(__dirname);
 app.setName(config.productName)
 
-function sendStatusToWindow(text) {
-    updateWindow.webContents.send('message', text);
-}
-
-function createDefaultWindow() {
-    updateWindow = new BrowserWindow();
-    updateWindow.webContents.openDevTools();
-    updateWindow.on('closed', () => {
-        updateWindow = null;
-    });
-    updateWindow.loadURL(`file://${__dirname}/updater/version.html#v${app.getVersion()}`);
-    return updateWindow;
-}
-
 autoUpdater.on('checking-for-update', () => {
-    sendStatusToWindow('Checking for update...');
+    console.log('Checking for update...');
 })
 autoUpdater.on('update-available', (info) => {
-    sendStatusToWindow('Update available.');
+    console.log('Update available.');
+    let swalOptions = {
+        title: "",
+        text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true
+    };
+    alert.fireWithFrame(swalOptions, "Delete file?", null, false);
 })
 autoUpdater.on('update-not-available', (info) => {
-    sendStatusToWindow('Update not available.');
+    console.log('Update not available.');
+    mainWindow.webContents.send("callbackUpdates", false);
 })
 autoUpdater.on('error', (err) => {
-    sendStatusToWindow('Error in auto-updater. ' + err);
+    console.log('Error in auto-updater. ' + err);
 })
 autoUpdater.on('download-progress', (progressObj) => {
     let log_message = "Download speed: " + progressObj.bytesPerSecond;
     log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
     log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-    sendStatusToWindow(log_message);
+    console.log(log_message);
 })
 autoUpdater.on('update-downloaded', (info) => {
-    sendStatusToWindow('Update downloaded');
+    console.log('Update downloaded');
 });
-app.on('ready', function () {
-    createDefaultWindow();
-});
+
 app.on('window-all-closed', () => {
     app.quit();
 });
@@ -66,8 +57,7 @@ app.on('window-all-closed', () => {
 
 app.on("ready", function () {
 
-    autoUpdater.checkForUpdatesAndNotify();
-
+    autoUpdater.checkForUpdatesAndNotify().then(r => console.log(r));
 
     mainWindow = new BrowserWindow({
         resizable: false,
@@ -161,6 +151,20 @@ app.on("ready", function () {
     ipcMain.on("StopTwitterBot", async (event) => {
         twitter.stop();
         mainWindow.webContents.send("callBackTwitterBot", true, twitter.started);
+    });
+
+    const Alert = require("electron-alert");
+
+    let alert = new Alert();
+
+
+    ipcMain.on("askForUpdates", async (event) => {
+        autoUpdater.checkForUpdatesAndNotify().then(r => {
+            if(r === null) {
+
+            }
+        });
+
     });
 
 })

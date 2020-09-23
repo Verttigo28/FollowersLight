@@ -11,7 +11,6 @@ function checkPairingStatus() {
 }
 
 function toggle() {
-    console.log("test")
     if(localStorage.getItem("username") !== null) {
         localStorage.removeItem("username");
         localStorage.removeItem("bridgeName");

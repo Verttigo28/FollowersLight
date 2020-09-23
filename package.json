@@ -1,6 +1,6 @@
 {
   "name": "followerslight",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This app will get your new followers and turn on and off your light",
   "main": "app.js",
   "productName": "Followers Light",
@@ -18,12 +18,13 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.5.2",
+    "electron-alert": "^0.1.11",
+    "electron-reload": "^1.5.0",
+    "electron-updater": "^4.3.5",
     "jquery": "^3.5.1",
     "node-hue-api": "^4.0.9",
     "oauth-electron-twitter": "^1.0.104",
-    "twitter-followers-count": "^1.0.6",
-    "electron-updater": "^4.3.5",
-    "electron-reload": "^1.5.0"
+    "twitter-followers-count": "^1.0.6"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",

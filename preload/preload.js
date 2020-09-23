@@ -10,14 +10,14 @@ contextBridge.exposeInMainWorld(
         //MAIN
         send: (channel, data) => {
             // whitelist channels
-            let validChannels = ["askBridgePairing", "askLights", "askTwitterApproval", "isTwitterRunning", "StartTwitterBot", "StopTwitterBot", "askStatusApp"];
+            let validChannels = ["askBridgePairing", "askLights", "askTwitterApproval", "isTwitterRunning", "StartTwitterBot", "StopTwitterBot", "askStatusApp", "askForUpdates", "startUpdate"];
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, data);
             }
         },
         //RENDER
         receive: (channel, func) => {
-            let validChannels = ["callbackBridge", "callBackLights", "callBackTwitter", "callbackTwitterRunning", "callBackTwitterBot", "callBackTwitterData", "callbackStatus"];
+            let validChannels = ["callbackBridge", "callBackLights", "callBackTwitter", "callbackTwitterRunning", "callBackTwitterBot", "callBackTwitterData", "callbackStatus", "callbackUpdates"];
             if (validChannels.includes(channel)) {
                 ipcRenderer.on(channel, (event, ...args) => func(...args));
             }

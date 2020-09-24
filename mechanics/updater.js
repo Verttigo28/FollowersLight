@@ -1,42 +1,63 @@
 const {autoUpdater} = require("electron-updater");
 const ipcMain = global.electron.ipcMain;
-const { dialog } = require('electron')
+const listener = require("../mechanics/listener")
+
+let updater;
 
 autoUpdater.autoDownload = false
+autoUpdater.fullChangelog = true;
 
-autoUpdater.on('error', (error) => {
-    dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
+function createUpdaterWindows() {
+    updater = new BrowserWindow({
+        resizable: false,
+        backgroundColor: "lightgray",
+        height: 500,
+        width: 690,
+        title: "Followers light updater",
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+    updater.on("closed", () => {
+        updater = null;
+    });
+    updater.loadURL(`file://${__dirname}/render/version.html`);
+    return updater;
+}
+
+
+autoUpdater.on("error", (error) => {
+    updater.webContents.send("error", "Error: ", error == null ? "unknown" : (error.stack || error).toString());
 })
 
-autoUpdater.on('update-available', () => {
-            autoUpdater.downloadUpdate()
+autoUpdater.on("update-available", (info) => {
+    updater.webContents.send("newUpdate", info);
+    createUpdaterWindows();
 })
 
-autoUpdater.on('update-not-available', () => {
-    dialog.showMessageBox({
-        title: 'No Updates',
-        message: 'Current version is up-to-date.'
-    })
+autoUpdater.on("update-not-available", () => {
+    listener.sendNoUpdate();
 })
 
-autoUpdater.on('update-downloaded', () => {
-    dialog.showMessageBox({
-        title: 'Install Updates',
-        message: 'Updates downloaded, application will be quit for update...'
-    }, () => {
-        setImmediate(() => autoUpdater.quitAndInstall())
-    })
+autoUpdater.on("update-downloaded", () => {
+    autoUpdater.quitAndInstall()
 })
 
-autoUpdater.on('download-progress', (progressObj) => {
-    if(progressObj.percent == 1 || progressObj.percent == 10 || progressObj.percent == 50 || progressObj.percent == 100) {
-        dialog.showMessageBox({
-            title: 'Update',
-            message: progressObj.progressBar
-        })
-    }
+autoUpdater.on("download-progress", (progressObj) => {
+    updater.webContents.send("progressBar", progressObj);
 })
 
 ipcMain.on("askForUpdate", async (event) => {
     autoUpdater.checkForUpdates();
 });
+
+app.on('ready', function () {
+    updater.webContents.receive("okForUpdate", (boolean) => {
+        if (boolean) autoUpdater.downloadUpdate();
+    });
+    updater.webContents.receive("close", (boolean) => {
+        if (boolean) updater.close();
+    });
+});
+
+

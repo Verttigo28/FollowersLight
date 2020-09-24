@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Baptiste Ferrando">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../render/CSS/version.css">
+    <link rel="stylesheet" href="CSS/version.css">
     <title>Followers Light - Update page</title>
 </head>
 <body>
@@ -14,41 +14,38 @@
 
     <header class="bg-dark">
         <div class="row float-left ml-2 center">
-            <button class="btn btn-outline-light">Ignore This Update</button>
+            <button class="btn btn-outline-light" onclick="skipVersion()">Ignore This Update</button>
         </div>
         <div class="row float-right mr-2 center">
-            <button class="btn btn-outline-light">Remind Me Later</button>
-            <button class="btn btn-outline-light ml-3">Update and Restart</button>
+            <button class="btn btn-outline-light" onclick="close()">Remind Me Later</button>
+            <button class="btn btn-outline-light ml-3" onclick="okForUpdate()">Update and Restart</button>
         </div>
     </header>
 
     <div class="container">
 
         <h3 class="text-center">An update is available</h3>
-        <div id="subTitle" class="text-muted text-center">Updating to v1.0.1</div>
+        <div id="subTitle" class="text-muted text-center">Updating to v1.0.0</div>
 
         <div class="row mt-4 col-md-12">
             <h5>Changelog</h5>
         </div>
         <div class="mt-3">
-            <ul class="">
-                <li class="">Cras justo odio</li>
-                <li class="">Dapibus ac facilisis in</li>
-                <li class="">Morbi leo risus</li>
-                <li class="">Porta ac consectetur ac</li>
-                <li class="">Vestibulum at eros</li>
-                <li class="">Dapibus ac facilisis in</li>
-                <li class="">Morbi leo risus</li>
-                <li class="">Porta ac consectetur ac</li>
-                <li class="">Vestibulum at eros</li>
-            </ul>
+            <ul id="changelogList"></ul>
+        </div>
+        <div id="progress" class="fixed-bottom mb-3" hidden>
+            <div class="progress">
+                <div id="progressbar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                     aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div id="percentage" class="text-center mt-2 text-muted">Download : 0%</div>
         </div>
     </div>
 
 </main>
 
 </body>
-<script src="version.js"></script>
+<script src="JS/version.js"></script>
 <script src="../node_modules/jquery/dist/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>

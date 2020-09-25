@@ -1,6 +1,6 @@
 {
   "name": "followerslight",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "This app will get your new followers and turn on and off your light",
   "main": "app.js",
   "productName": "Followers Light",
@@ -22,6 +22,7 @@
     "electron-reload": "^1.5.0",
     "electron-updater": "^4.3.5",
     "jquery": "^3.5.1",
+    "node-fetch": "^2.6.1",
     "node-hue-api": "^4.0.9",
     "oauth-electron-twitter": "^1.0.104",
     "twitter-followers-count": "^1.0.6"

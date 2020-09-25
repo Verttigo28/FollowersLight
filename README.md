@@ -42,12 +42,20 @@ Every 2 seconds the lightSystem will check if the pipeline is empty, if not he w
 * Twitter Support, you can connect your account to the Followers Light app and check every account you want.
   * Every 2 seconds, the bot will check the account you specify and calculate the difference between the last.
   * You can specify the account name you want!
+* Instagram Support, you can enter the name you want !
+  * Every 2 seconds, the bot will check the account you specify and calculate the difference between the last.
+  * No need to connect your account!
+* Auto-Updater, since v1.2.0, the auto-updater has been implemented
+  * Automatic / Manual update
+  * No need to resinstall everything!
   
 ## TODO List
 
-* Auto-Update
-  * The auto-update will be implemented soon.
-  * No need to reinstall the software after that release.
+*̶ ̶A̶u̶t̶o̶-̶U̶p̶d̶a̶t̶e̶
+  *̶ ̶T̶h̶e̶ ̶a̶u̶t̶o̶-̶u̶p̶d̶a̶t̶e̶ ̶w̶i̶l̶l̶ ̶b̶e̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶e̶d̶ ̶s̶o̶o̶n̶.̶ ̶ ̶ ̶
+  *̶ ̶N̶o̶ ̶n̶e̶e̶d̶ ̶t̶o̶ ̶r̶e̶i̶n̶s̶t̶a̶l̶l̶ ̶t̶h̶e̶ ̶s̶o̶f̶t̶w̶a̶r̶e̶ ̶a̶f̶t̶e̶r̶ ̶t̶h̶a̶t̶ ̶r̶e̶l̶e̶a̶s̶e̶.̶
+*̶ ̶I̶n̶s̶t̶a̶g̶r̶a̶m̶ ̶S̶u̶p̶p̶o̶r̶t̶ ̶ ̶ ̶
+  *̶ ̶L̶i̶k̶e̶ ̶T̶w̶i̶t̶c̶h̶,̶ ̶i̶ ̶a̶l̶r̶e̶a̶d̶y̶ ̶k̶n̶o̶w̶ ̶h̶o̶w̶ ̶t̶o̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶ ̶t̶h̶a̶t̶,̶ ̶o̶n̶l̶y̶ ̶n̶e̶e̶d̶ ̶t̶i̶m̶e̶.̶  
 * Twitch Support
   * I already know how to implemented that, i only need time.
   * Will support new sub, bits donation, re sub , Mod actions (like ban), new bits badge
@@ -55,11 +63,6 @@ Every 2 seconds the lightSystem will check if the pipeline is empty, if not he w
   * For the moment only a random color can be specified, due to a lack of time.
   * Slider between color range.
   * Color picker.
-* Instagram Support
-  * Like Twitch, i already know how to implement that, only need time.
-* TikTok
-  * Like Twitch and Instagram, i already know how to implement that, only need time.
-  * I will add TikTok support even if the API return rounded sub count.
 * Multi bridge support
 * Other smart light support.
 

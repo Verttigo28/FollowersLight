@@ -5,7 +5,6 @@ function checkUpdates() {
 }
 
 window.api.receive("callbackUpdate", (available) => {
-    console.log("ICIIIIIIIIII ")
     if (!available) {
         alert("No update available, check back later")
     }

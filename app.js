@@ -55,8 +55,9 @@ app.on("ready", function () {
     })
 
     global.mainWindow = mainWindow;
-    require("./mechanics/updater");
     require("./mechanics/listener");
+    require("./mechanics/updater");
+
 
 })
 

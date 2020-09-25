@@ -1,6 +1,8 @@
 const {autoUpdater} = require("electron-updater");
 const ipcMain = global.electron.ipcMain;
-const listener = require("../mechanics/listener")
+const app = global.electron.app;
+const dialog = global.electron.dialog;
+const listener = require("../mechanics/listener");
 
 let updater;
 
@@ -25,6 +27,9 @@ function createUpdaterWindows() {
     return updater;
 }
 
+ipcMain.on("askForUpdate", async () => {
+    autoUpdater.checkForUpdates();
+});
 
 autoUpdater.on("error", (error) => {
     updater.webContents.send("error", "Error: ", error == null ? "unknown" : (error.stack || error).toString());
@@ -47,11 +52,9 @@ autoUpdater.on("download-progress", (progressObj) => {
     updater.webContents.send("progressBar", progressObj);
 })
 
-ipcMain.on("askForUpdate", async (event) => {
-    autoUpdater.checkForUpdates();
-});
 
-app.on('ready', function () {
+app.on('ready',  () => {
+
     updater.webContents.receive("okForUpdate", (boolean) => {
         if (boolean) autoUpdater.downloadUpdate();
     });

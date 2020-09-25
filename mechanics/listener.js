@@ -2,6 +2,7 @@ const BrowserWindow = global.electron.BrowserWindow;
 const ipcMain = global.electron.ipcMain;
 const bridge = require("./bridgepairing.js");
 const twitter = require("./twitter.js");
+const insta = require("./instagram.js");
 const keys = require("../config/config.json");
 const light = require("./getAllLights");
 const auth = require("oauth-electron-twitter")
@@ -43,10 +44,15 @@ ipcMain.on("isTwitterRunning", async (event) => {
     mainWindow.webContents.send("callbackTwitterRunning", true, twitter.started);
 });
 
+ipcMain.on("isInstaRunning", async (event) => {
+    mainWindow.webContents.send("callbackInstaRunning", true, insta.started);
+});
+
 ipcMain.on("askStatusApp", async (event) => {
     let twitterStatus = twitter.getStatus();
-    let data = {twitterStatus}
-    global.mainWindow.webContents.send("callbackStatus", true, data);
+    let instaStatus = insta.getStatus();
+    let data = {twitterStatus, instaStatus}
+    mainWindow.webContents.send("callbackStatus", true, data);
 });
 
 ipcMain.on("StartTwitterBot", async (event, data) => {
@@ -58,8 +64,21 @@ ipcMain.on("StopTwitterBot", async (event) => {
     mainWindow.webContents.send("callBackTwitterBot", true, twitter.started);
 });
 
+ipcMain.on("StartInstaBot", async (event, data) => {
+    insta.start(data.bridgeUser, data.light, data.instaUser);
+});
+
+ipcMain.on("StopInstaBot", async (event) => {
+    insta.stop();
+    mainWindow.webContents.send("callBackInstaBot", true, insta.started);
+});
+
 exports.sendTwitterData = (success, data) => {
     mainWindow.webContents.send("callBackTwitterData", success, data);
+}
+
+exports.sendInstaData = (success, data) => {
+    mainWindow.webContents.send("callBackInstaData", success, data);
 }
 
 exports.sendNoUpdate = () => {

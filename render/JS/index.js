@@ -16,5 +16,9 @@ function checkVitals() {
             document.getElementById("twitterSpan").innerText = "Bot running";
             document.getElementById("twitterImage").src = "data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=";
         }
+        if(data.instaStatus) {
+            document.getElementById("instaSpan").innerText = "Bot running";
+            document.getElementById("instaImage").src = "data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=";
+        }
     });
 }

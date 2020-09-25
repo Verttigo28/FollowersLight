@@ -2,27 +2,19 @@
 
 let started = false;
 
-if (localStorage.getItem("username") === null) {
-    document.getElementById("toggleBot").disabled = true;
-    document.getElementById("global").hidden = true;
-    document.getElementById("notLink").hidden = false;
-    alert("You can't use the bot if you don't have a Hue Bridge paired")
-}
-
-function lock(){
+function lock() {
     document.getElementById("inputUsername").disabled = true;
     document.getElementById("lightSelector").disabled = true;
     document.getElementById("disconnect").disabled = true;
 }
 
-function unlock(){
+function unlock() {
     document.getElementById("inputUsername").disabled = false;
     document.getElementById("lightSelector").disabled = false;
     document.getElementById("disconnect").disabled = false;
 }
 
 function displayTwitterInfo() {
-    getLights();
     document.getElementById("toggleBot").disabled = true;
     if (localStorage.getItem("Token") !== null) {
         document.getElementById("subtitle").innerText = "Twitter account connected, you can now enter the username you want!";
@@ -127,6 +119,17 @@ function isTwitterRunning() {
     });
 }
 
+function init() {
+    if (localStorage.getItem("username") === null) {
+        document.getElementById("toggleBot").disabled = true;
+        document.getElementById("global").hidden = true;
+        document.getElementById("notLink").hidden = false;
+        alert("You can't use the bot if you don't have a Hue Bridge paired")
+    } else {
+        getLights();
+        displayTwitterInfo();
+    }
+}
 
 window.api.receive("callBackTwitterData", (success, data) => {
     if (!success) {
@@ -135,7 +138,7 @@ window.api.receive("callBackTwitterData", (success, data) => {
         return;
     }
     let date = new Date();
-    let dateFormat = (date.getHours()<10?'0':'') + date.getHours()  + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes();
+    let dateFormat = (date.getHours() < 10 ? '0' : '') + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
     lock();
     document.getElementById("toggleBot").innerText = "Stop Bot";
     document.getElementById("counts").innerText = data.followerCount;
@@ -145,4 +148,3 @@ window.api.receive("callBackTwitterData", (success, data) => {
     document.getElementById("inputUsername").value = data.user;
 
 });
-

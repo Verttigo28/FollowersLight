@@ -85,7 +85,14 @@ window.api.receive("callBackInstaData", (success, data) => {
 });
 
 function init(){
-    getLights();
-    isInstaRunning();
+    if (localStorage.getItem("username") === null) {
+        document.getElementById("toggleBot").disabled = true;
+        document.getElementById("global").hidden = true;
+        document.getElementById("notLink").hidden = false;
+        alert("You can't use the bot if you don't have a Hue Bridge paired")
+    } else {
+        getLights();
+        isInstaRunning();
+    }
 }
 

@@ -3,6 +3,7 @@ const ipcMain = global.electron.ipcMain;
 const bridge = require("./bridgepairing.js");
 const twitter = require("./twitter.js");
 const insta = require("./instagram.js");
+const twitch = require("./twitch.js");
 const keys = require("../config/config.json");
 const light = require("./getAllLights");
 const auth = require("oauth-electron-twitter")
@@ -48,6 +49,10 @@ ipcMain.on("isInstaRunning", async (event) => {
     mainWindow.webContents.send("callbackInstaRunning", true, insta.started);
 });
 
+ipcMain.on("isTwitchRunning", async (event) => {
+    mainWindow.webContents.send("callbackTwitchRunning", true, twitch.started);
+});
+
 ipcMain.on("askStatusApp", async (event) => {
     let twitterStatus = twitter.getStatus();
     let instaStatus = insta.getStatus();
@@ -64,13 +69,35 @@ ipcMain.on("StopTwitterBot", async (event) => {
     mainWindow.webContents.send("callBackTwitterBot", true);
 });
 
+ipcMain.on("StartTwitchBot", async (event, data) => {
+    await twitch.start(data)
+});
+
+ipcMain.on("StopTwitchBot", async (event) => {
+    twitch.stop();
+    mainWindow.webContents.send("callBackTwitchBot", true);
+});
+
 ipcMain.on("StartInstaBot", async (event, data) => {
     insta.start(data.bridgeUser, data.light, data.instaUser);
 });
 
 ipcMain.on("StopInstaBot", async (event) => {
     insta.stop();
+    console.log("stop insta")
     mainWindow.webContents.send("callBackInstaBot", true);
+});
+
+ipcMain.on("askTwitchConnexion", async (event) => {
+    twitch.getUserID().then((userID) => {
+        console.log(userID)
+        if(userID === undefined) {
+            mainWindow.webContents.send("callBackTwitchConnexion", false, null);
+        } else {
+            mainWindow.webContents.send("callBackTwitchConnexion", true, userID);
+        }
+
+    });
 });
 
 exports.sendTwitterData = (success, data) => {

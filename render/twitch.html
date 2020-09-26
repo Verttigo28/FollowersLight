@@ -6,10 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Baptiste Ferrando">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
     <link rel="stylesheet" href="CSS/dashboard.css">
     <title>Followers Light - Let your followers control your light</title>
 </head>
-<body>
+<body onload="init()">
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
@@ -38,47 +39,162 @@
                 </li>
             </ul>
         </div>
-        <button id="checkUpdates" class="btn btn-outline-success btn-sm" type="submit" onclick="checkUpdates()">Check for updates</button>
+        <button id="checkUpdates" class="btn btn-outline-success btn-sm" type="submit" onclick="checkUpdates()">Check
+            for updates
+        </button>
     </nav>
 </header>
 
+<h1 hidden id="notLink" class="mt-5 text-center">You need to pair a Hue Bridge</h1>
 
-<div class="container-fluid mt-5">
-    <div class="row content">
+<div id="global" class="container mt-5 pt-2 text-center">
 
-        <main role="main" class="col-sm-9 mx-auto col-md-10 pt-3">
+    <h1>Twitch</h1>
 
-            <section class="row text-center">
-                <div class="col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="150"
-                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-                    <h4>Hue Bridge</h4>
-                    <div class="text-muted">Something else</div>
-                </div>
-                <div class="col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="150"
-                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-                    <h4>Twitter</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-                <div class="col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="150"
-                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-                    <h4>Instagram</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-                <div class="col-sm-3 placeholder">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="150"
-                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-                    <h4>Twitch</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-            </section>
-
-        </main>
+    <div id="noTwitch" class="row" hidden>
+        <div class="col">
+            <div id="subtitle" class="text-muted mb-3">You need to connect your Twitch account before starting the
+                bot
+            </div>
+            <button id="connectTwitchButton" class="btn btn-outline-primary mt-2" onclick="connectTwitch()">Connect
+                Twitch
+            </button>
+        </div>
     </div>
+
+    <div id="TwitchApp" class="row text-center mt-1">
+        <div class="col">
+
+            <div class="md-5" style="height: 40px">
+                <form autocomplete="off">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="chk1" value="bits" onclick="enabler(this)"
+                               checked>
+                        <label class="form-check-label" for="chk1">BitsEvent</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="chk2" value="sub" onclick="enabler(this)"
+                               checked>
+                        <label class="form-check-label" for="chk2">SubEvent</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="chk3" value="badge" onclick="enabler(this)"
+                               checked>
+                        <label class="form-check-label" for="chk3">BadgeEvent</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="chk4" value="mod" onclick="enabler(this)"
+                               checked>
+                        <label class="form-check-label" for="chk4">ModEvent</label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div id="bitsDiv" class="col" style="height: 180px;">
+                        <h6 class="">Bits Event</h6>
+                        <select class="form-control w-50 d-inline-block mb-2 custom-select-sm" id="lightSelector1">
+                            <option disabled selected value="1">Select light</option>
+                        </select>
+                        <div class="text-muted">Color selection</div>
+                        <form autocomplete="off">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="bits" id="Radio1"
+                                       value="random" onclick="colorRadio(this)" checked>
+                                <label class="form-check-label" for="Radio1">Random</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="bits" id="Radio2"
+                                       value="manual" onclick="colorRadio(this)">
+                                <label class="form-check-label" for="Radio2">Manual</label>
+                            </div>
+                        </form>
+                        <button hidden class="btn btn-outline-primary btn-sm" id="color-picker-1">Choose your color
+                        </button>
+                    </div>
+                    <div id="subDiv" class="col" style="height: 180px">
+                        <h6 class="">Sub Event</h6>
+                        <select class="form-control w-50 d-inline-block mb-2 custom-select-sm" id="lightSelector2">
+                            <option disabled selected value="1">Select light</option>
+                        </select>
+                        <div class="text-muted">Color selection</div>
+                        <form autocomplete="off">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sub" id="Radio3"
+                                       value="random" onclick="colorRadio(this)" checked>
+                                <label class="form-check-label" for="Radio3">Random</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sub" id="Radio4"
+                                       value="manual" onclick="colorRadio(this)">
+                                <label class="form-check-label" for="Radio4">Manual</label>
+                            </div>
+                        </form>
+                        <button hidden class="btn btn-outline-primary btn-sm" id="color-picker-2">Choose your color
+                        </button>
+                    </div>
+                    <div class="w-100"></div>
+                    <div id="badgeDiv" class="col" style="height: 190px">
+                        <h6 class="">Bits Badge Event</h6>
+                        <select class="form-control w-50 d-inline-block mb-2 custom-select-sm" id="lightSelector3">
+                            <option disabled selected value="1">Select light</option>
+                        </select>
+                        <div class="text-muted">Color selection</div>
+                        <form autocomplete="off">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="badge" id="Radio5"
+                                       value="random" onclick="colorRadio(this)" checked>
+                                <label class="form-check-label" for="Radio5">Random</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="badge" id="Radio6"
+                                       value="manual" onclick="colorRadio(this)">
+                                <label class="form-check-label" for="Radio6">Manual</label>
+                            </div>
+                        </form>
+                        <button hidden class="btn btn-outline-primary btn-sm" id="color-picker-3">Choose your color
+                        </button>
+                    </div>
+                    <div id="modDiv" class="col" style="height: 190px">
+                        <h6 class="">Mod Event</h6>
+                        <select class="form-control w-50 d-inline-block mb-2 custom-select-sm" id="lightSelector4">
+                            <option disabled selected value="1">Select light</option>
+                        </select>
+                        <div class="text-muted">Color selection</div>
+                        <form autocomplete="off">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mod" id="Radio7"
+                                       value="random" onclick="colorRadio(this)" checked>
+                                <label class="form-check-label" for="Radio7">Random</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mod" id="Radio8"
+                                       value="manual" onclick="colorRadio(this)">
+                                <label class="form-check-label" for="Radio8">Manual</label>
+                            </div>
+                        </form>
+                        <button hidden class="btn btn-outline-primary btn-sm" id="color-picker-4">Choose your color
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <button id="toggleBot" class="btn btn-outline-primary mt-2" onclick="toggleBot()">
+                Start Bot
+            </button>
+
+            <button id="disconnect" class="btn btn-outline-primary mt-2" onclick="disconnect()">
+                Disconnect Twitch
+            </button>
+        </div>
+    </div>
+
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 <script src="JS/index.js"></script>
 <script src="JS/global.js"></script>
+<script src="JS/twitch.js"></script>
 </html>

@@ -11,7 +11,6 @@ global.electron = electron;
 require("electron-reload")(__dirname)
 app.setName(config.productName)
 
-
 app.on("ready", function () {
 
     mainWindow = new BrowserWindow({

@@ -5,3 +5,4 @@ config.json
 test
 dist
 .DS_Store
+test.js

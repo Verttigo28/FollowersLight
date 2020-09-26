@@ -21,15 +21,18 @@
     "electron-alert": "^0.1.11",
     "electron-reload": "^1.5.0",
     "electron-updater": "^4.3.5",
-    "node-fetch": "^2.6.1",
     "jquery": "^3.5.1",
+    "node-fetch": "^2.6.1",
     "node-hue-api": "^4.0.9",
     "oauth-electron-twitter": "^1.0.104",
+    "twitch": "^4.2.4",
+    "twitch-electron-auth-provider": "^4.2.4",
+    "twitch-pubsub-client": "^4.2.4",
     "twitter-followers-count": "^1.0.6"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "electron": "^9.2.1",
+    "electron": "^9.3.1",
     "electron-builder": "^22.8.1"
   },
   "repository": {

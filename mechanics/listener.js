@@ -61,7 +61,7 @@ ipcMain.on("StartTwitterBot", async (event, data) => {
 
 ipcMain.on("StopTwitterBot", async (event) => {
     twitter.stop();
-    mainWindow.webContents.send("callBackTwitterBot", true, twitter.started);
+    mainWindow.webContents.send("callBackTwitterBot", true);
 });
 
 ipcMain.on("StartInstaBot", async (event, data) => {
@@ -70,7 +70,7 @@ ipcMain.on("StartInstaBot", async (event, data) => {
 
 ipcMain.on("StopInstaBot", async (event) => {
     insta.stop();
-    mainWindow.webContents.send("callBackInstaBot", true, insta.started);
+    mainWindow.webContents.send("callBackInstaBot", true);
 });
 
 exports.sendTwitterData = (success, data) => {

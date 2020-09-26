@@ -90,9 +90,9 @@ function toggleBot() {
         started = false;
         unlock()
         window.api.send("StopTwitterBot");
-        window.api.receive("callBackTwitterBot", (success, data) => {
+        window.api.receive("callBackTwitterBot", (success) => {
             if (!success) {
-                alert(data.message);
+                alert("Some sort of problem going on");
                 return;
             }
             document.getElementById("toggleBot").innerText = "Start Bot";

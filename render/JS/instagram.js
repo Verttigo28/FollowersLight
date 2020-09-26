@@ -36,10 +36,12 @@ function toggleBot() {
         document.getElementById("toggleBot").innerText = "Stop Bot";
     } else {
         started = false;
+        console.log("ICI")
         window.api.send("StopInstaBot");
-        window.api.receive("callBackInstaBot", (success, data) => {
+        window.api.receive("callBackInstaBot", (success) => {
+            console.log("Back")
             if (!success) {
-                alert(data.message);
+                alert("Some problem going on");
                 return;
             }
             document.getElementById("toggleBot").innerText = "Start Bot";

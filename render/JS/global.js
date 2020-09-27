@@ -9,3 +9,9 @@ window.api.receive("callbackUpdate", (available) => {
         alert("No update available, check back later")
     }
 });
+
+
+window.api.receive("error", (error, type) => {
+   alert(type + " : " + error);
+   location.reload();
+});

@@ -4,6 +4,7 @@ const LightState = v3.lightStates.LightState;
 const twitter = require("./twitter");
 const twitch = require("./twitch");
 const insta = require("./instagram");
+const listener = require("./listener");
 
 let pipeline = [];
 let busy = false;
@@ -22,7 +23,7 @@ exports.getAllLights = async (username) => {
             })
             .then(allLights => {
                 resolve(allLights);
-            }).catch(e => reject(e))
+            }).catch((err) => listener.sendErrorT(err, "GetAllLight Event"))
     })
     return await promise;
 
@@ -40,7 +41,7 @@ exports.turnOffLight = (BridgeUser) => {
             allLights.forEach((light) => {
                 api.lights.setLightState(light._data.id, stateOFF);
             })
-        });
+        }).catch((err) => listener.sendErrorT(err, "TurnOffLight Event"))
 }
 
 exports.changeLightColor = (random, color, lightID, BridgeUser, type) => {
@@ -72,7 +73,7 @@ exports.changeLightColor = (random, color, lightID, BridgeUser, type) => {
                         busy = false;
                     }, 1000);
                 });
-            })
+            }).catch((err) => listener.sendErrorT(err, "ChangeLight Event"))
     }
 }
 

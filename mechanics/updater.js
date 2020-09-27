@@ -29,6 +29,7 @@ function createUpdaterWindows() {
 
 ipcMain.on("askForUpdate", async () => {
     autoUpdater.checkForUpdates();
+    createUpdaterWindows();
 });
 
 autoUpdater.on("error", (error) => {
@@ -37,7 +38,6 @@ autoUpdater.on("error", (error) => {
 
 autoUpdater.on("update-available", (info) => {
     updater.webContents.send("newUpdate", info);
-    createUpdaterWindows();
 })
 
 autoUpdater.on("update-not-available", () => {

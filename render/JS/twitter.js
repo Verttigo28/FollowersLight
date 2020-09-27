@@ -97,6 +97,7 @@ function colorRadio(radio) {
         document.getElementById("color-picker-1").hidden = false;
     }
 }
+
 function getRadioValue() {
     let value = document.querySelector('input[name="twitter"]:checked').value;
     if (value === "random") {
@@ -134,15 +135,8 @@ function toggleBot() {
         started = false;
         unlock()
         window.api.send("StopTwitterBot");
-        window.api.receive("callBackTwitterBot", (success) => {
-            if (!success) {
-                alert("Some sort of problem going on");
-                return;
-            }
-            document.getElementById("toggleBot").innerText = "Start Bot";
-        });
+        document.getElementById("toggleBot").innerText = "Start Bot";
     }
-
 }
 
 function isTwitterRunning() {

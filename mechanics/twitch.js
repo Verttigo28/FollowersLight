@@ -33,6 +33,7 @@ exports.getUserID = async () => {
 
 
 exports.start = async (data) => {
+    if (data[0].bridgeUser === null || data[0].light === null || data[0].color.random == null || data[0].color.random == null) return new Error("Not every input have been entered");
     await pubSubClient.registerUserListener(await loginTwitch());
     BridgeUser = data[0].BridgeUser;
     started = true;
@@ -74,15 +75,19 @@ exports.start = async (data) => {
 
 }
 
-exports.stop = () => {
-    started = false;
-    busy = false;
-    lightAPI.turnOffLight(BridgeUser);
-    lightAPI.clearPipelineFromType("twitch");
-    onBitsBadgeUnlock.remove();
-    onBits.remove();
-    onModAction.remove();
-    onSubscription.remove();
+exports.stop = async () => {
+    try {
+        started = false;
+        busy = false;
+        lightAPI.turnOffLight(BridgeUser);
+        lightAPI.clearPipelineFromType("twitch");
+        onBitsBadgeUnlock.remove();
+        onBits.remove();
+        onModAction.remove();
+        onSubscription.remove();
+    } catch (err) {
+        return new Error("Error during bot stopping");
+    }
 }
 
 exports.getStatus = () => {

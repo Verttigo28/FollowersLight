@@ -15,7 +15,7 @@ ipcMain.on("askLights", async (event, bridge) => {
     lightAPI.getAllLights(bridge).then((data) => {
         mainWindow.webContents.send("callBackLights", true, data);
     }).catch((err) => {
-        mainWindow.webContents.send("callBackLights", false, err);
+        mainWindow.webContents.send("error", err, "light");
     })
 });
 
@@ -29,7 +29,7 @@ ipcMain.on("askTwitterApproval", async (event) => {
         mainWindow.webContents.send("callBackTwitter", true, r);
         window.close();
     }).catch((err) => {
-        mainWindow.webContents.send("callBackTwitter", false, err);
+        mainWindow.webContents.send("error", err, "twitter");
     })
 });
 
@@ -37,7 +37,7 @@ ipcMain.on("askBridgePairing", async (event) => {
     bridge.discoverAndCreateUser().then((data) => {
         mainWindow.webContents.send("callbackBridge", true, data);
     }).catch((err) => {
-        mainWindow.webContents.send("callbackBridge", false, err);
+        mainWindow.webContents.send("error", err, "bridge");
     });
 });
 
@@ -56,40 +56,38 @@ ipcMain.on("isTwitchRunning", async (event) => {
 ipcMain.on("askStatusApp", async (event) => {
     let twitterStatus = twitter.getStatus();
     let instaStatus = insta.getStatus();
-    let data = {twitterStatus, instaStatus}
+    let twitchStatus = twitch.getStatus();
+    let data = {twitterStatus, instaStatus, twitchStatus}
     mainWindow.webContents.send("callbackStatus", true, data);
 });
 
 ipcMain.on("StartTwitterBot", async (event, data) => {
-    twitter.start(data);
+    twitter.start(data).catch((err) => sendError(err, "Twitter Bot"));
 });
 
 ipcMain.on("StopTwitterBot", async (event) => {
-    twitter.stop();
-    mainWindow.webContents.send("callBackTwitterBot", true);
+    twitter.stop().catch((err) => sendError(err, "Twitter Bot"));
 });
 
 ipcMain.on("StartTwitchBot", async (event, data) => {
-    await twitch.start(data)
+    twitch.start(data).catch((err) => sendError(err, "Twitch Bot"));
 });
 
 ipcMain.on("StopTwitchBot", async (event) => {
-    twitch.stop();
-    mainWindow.webContents.send("callBackTwitchBot", true);
+    twitch.stop().catch((err) => sendError(err, "Twitch Bot"));
 });
 
 ipcMain.on("StartInstaBot", async (event, data) => {
-    insta.start(data);
+    insta.start(data).catch((err) => sendError(err, "Instagram Bot"));
 });
 
 ipcMain.on("StopInstaBot", async (event) => {
-    insta.stop();
-    mainWindow.webContents.send("callBackInstaBot", true);
+    insta.stop().catch((err) => sendError(err, "Insta Bot"));
 });
 
 ipcMain.on("askTwitchConnexion", async (event) => {
     twitch.getUserID().then((userID) => {
-        if(userID === undefined) {
+        if (userID === undefined) {
             mainWindow.webContents.send("callBackTwitchConnexion", false, null);
         } else {
             mainWindow.webContents.send("callBackTwitchConnexion", true, userID);
@@ -109,3 +107,13 @@ exports.sendInstaData = (success, data) => {
 exports.sendNoUpdate = () => {
     mainWindow.webContents.send("callbackUpdate", false);
 }
+
+function sendError(error, type) {
+    mainWindow.webContents.send("error", error, type);
+}
+
+exports.sendErrorT = (error, type) =>{
+    mainWindow.webContents.send("error", error, type);
+}
+
+

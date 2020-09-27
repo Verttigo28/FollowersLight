@@ -233,7 +233,7 @@ function getLights() {
             alert(data.message);
             return;
         }
-        let array = [1,2,3,4];
+        let array = [1, 2, 3, 4];
         array.forEach((id) => {
             let ls = document.getElementById("lightSelector" + id);
             while (ls.firstChild) ls.removeChild(ls.lastChild);
@@ -286,13 +286,7 @@ function toggleBot() {
         document.getElementById("toggleBot").innerText = "Stop Bot";
     } else {
         window.api.send("StopTwitchBot");
-        window.api.receive("callBackTwitchBot", (success) => {
-            if (!success) {
-                alert("Some sort of problem going on");
-                return;
-            }
-            unlock();
-            document.getElementById("toggleBot").innerText = "Start Bot";
-        });
+        unlock();
+        document.getElementById("toggleBot").innerText = "Start Bot";
     }
 }

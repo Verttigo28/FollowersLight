@@ -83,14 +83,7 @@ function toggleBot() {
     } else {
         started = false;
         window.api.send("StopInstaBot");
-        window.api.receive("callBackInstaBot", (success) => {
-            console.log("Back")
-            if (!success) {
-                alert("Some problem going on");
-                return;
-            }
-            document.getElementById("toggleBot").innerText = "Start Bot";
-        });
+        document.getElementById("toggleBot").innerText = "Start Bot";
     }
 
 }
@@ -121,7 +114,7 @@ window.api.receive("callBackInstaData", (success, data) => {
         return;
     }
     let date = new Date();
-    let dateFormat = (date.getHours()<10?'0':'') + date.getHours()  + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes();
+    let dateFormat = (date.getHours() < 10 ? '0' : '') + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
     document.getElementById("toggleBot").innerText = "Stop Bot";
     document.getElementById("counts").innerText = data.followerCount;
     document.getElementById("pipeline").innerText = data.pipeline;
@@ -130,7 +123,7 @@ window.api.receive("callBackInstaData", (success, data) => {
 
 });
 
-function init(){
+function init() {
     if (localStorage.getItem("username") === null) {
         document.getElementById("toggleBot").disabled = true;
         document.getElementById("global").hidden = true;

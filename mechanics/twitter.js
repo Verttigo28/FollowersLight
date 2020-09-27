@@ -36,14 +36,14 @@ function getFollowersCount() {
             lightAPI.turnOffLight(BridgeUser);
             clearInterval(refreshData)
             clearInterval(refreshFollower)
-            listener.sendTwitterData(false, {message: "Unknown user"});
+            listener.sendErrorT("The user enter is not valid", "Twitter Bot");
         }
     })();
 }
 
 
-exports.start = (data) => {
-
+exports.start = async (data) => {
+    if (data.bridgeUser === null || data.light === null || data.user === null || data.color.random == null || data.color.random == null) return new Error("Not every input have been entered");
     BridgeUser = data.bridgeUser;
     LIGHT_ID = data.light;
     started = true;
@@ -77,14 +77,18 @@ exports.start = (data) => {
 
 }
 
-exports.stop = () => {
-    started = false;
-    getTwitterFollowers = null;
-    fansCount = undefined;
-    lightAPI.turnOffLight(BridgeUser);
-    lightAPI.clearPipelineFromType("twitter");
-    clearInterval(refreshData)
-    clearInterval(refreshFollower)
+exports.stop = async () => {
+    try {
+        started = false;
+        getTwitterFollowers = null;
+        fansCount = null;
+        lightAPI.turnOffLight(BridgeUser);
+        lightAPI.clearPipelineFromType("twitter");
+        clearInterval(refreshData)
+        clearInterval(refreshFollower)
+    } catch (err) {
+        return new Error("Error during bot stopping");
+    }
 }
 
 exports.getStatus = () => {

@@ -32,11 +32,12 @@ function getFollowersCount() {
         lightAPI.turnOffLight(BridgeUser);
         clearInterval(refreshData)
         clearInterval(refreshFollower)
-        listener.sendInstaData(false, {message: "Unknown user"});
+        listener.sendErrorT("The user enter is not valid", "Instagram Bot");
     });
 }
 
-exports.start = (data) => {
+exports.start = async (data) => {
+    if (data.bridgeUser === null || data.light === null || data.instaUser === null || data.color.random == null || data.color.random == null) return new Error("Not every input have been entered");
     BridgeUser = data.bridgeUser;
     LIGHT_ID = data.light;
     started = true;
@@ -63,13 +64,17 @@ exports.start = (data) => {
 
 }
 
-exports.stop = () => {
-    started = false;
-    fansCount = undefined;
-    lightAPI.turnOffLight(BridgeUser);
-    clearInterval(refreshData)
-    clearInterval(refreshFollower)
-    lightAPI.clearPipelineFromType("insta");
+exports.stop = async () => {
+    try {
+        started = false;
+        fansCount = null;
+        lightAPI.turnOffLight(BridgeUser);
+        clearInterval(refreshData)
+        clearInterval(refreshFollower)
+        lightAPI.clearPipelineFromType("insta");
+    } catch (err) {
+        return new Error("Error during bot stopping");
+    }
 }
 
 exports.getStatus = () => {

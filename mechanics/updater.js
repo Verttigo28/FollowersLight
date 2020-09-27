@@ -1,7 +1,7 @@
 const {autoUpdater} = require("electron-updater");
 const ipcMain = global.electron.ipcMain;
 const app = global.electron.app;
-const dialog = global.electron.dialog;
+const BrowserWindow = global.electron.BrowserWindow;
 const listener = require("../mechanics/listener");
 
 let updater;

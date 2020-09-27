@@ -143,7 +143,6 @@ window.api.receive("callBackTwitterData", (success, data) => {
     document.getElementById("toggleBot").innerText = "Stop Bot";
     document.getElementById("counts").innerText = data.followerCount;
     document.getElementById("pipeline").innerText = data.pipeline;
-    document.getElementById("colorDisplay").innerText = data.colorDisplay;
     document.getElementById("lastCheck").innerText = dateFormat;
     document.getElementById("inputUsername").value = data.user;
 

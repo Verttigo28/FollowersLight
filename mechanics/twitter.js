@@ -1,18 +1,15 @@
 const twitterFollowersCount = require("twitter-followers-count");
-const v3 = require("node-hue-api").v3;
-const LightState = v3.lightStates.LightState;
+const lightAPI = require("./lightAPI");
 const listener = require("./listener")
 
 const config = require("../config/config.json")
 
 let BridgeUser;
 let user;
-let LIGHT_ID = 0;
+let LIGHT_ID;
 let fansCount;
-let pipeline = 0;
 let refreshFollower;
-let colorDisplay = 0;
-let refreshLight;
+let refreshData;
 let started = false;
 
 exports.started = started;
@@ -30,54 +27,22 @@ function getFollowersCount() {
 
             if (count > fansCount) {
                 let diff = count - fansCount;
-                pipeline += diff;
+                for(let i=0; i< diff;i++){
+                    lightAPI.changeLightColor(true, null, LIGHT_ID, BridgeUser)
+                }
             }
             fansCount = count;
         } catch(e) {
             started = false;
             getTwitterFollowers = null;
-            turnOffLight();
-            clearInterval(refreshLight)
+            lightAPI.turnOffLight(BridgeUser);
+            clearInterval(refreshData)
             clearInterval(refreshFollower)
             listener.sendTwitterData(false, {message: "Unknown user"});
         }
     })();
 }
 
-function changeLightColor() {
-    //if the pipeline is not empty
-    if (pipeline > 0) {
-        v3.discovery.nupnpSearch()
-            .then((searchResults) => {
-                const host = searchResults[0].ipaddress;
-                return v3.api.createLocal(host).connect(BridgeUser);
-            })
-            .then((api) => {
-                colorDisplay = Math.floor(Math.random() * Math.floor(65535));
-                const stateON = new LightState().on().hue(colorDisplay).brightness(100);
-                const stateOFF = new LightState().off();
-                pipeline--;
-
-                api.lights.setLightState(LIGHT_ID, stateON).then(() => {
-                    setTimeout(() => {
-                        api.lights.setLightState(LIGHT_ID, stateOFF);
-                    }, 1000);
-                });
-            })
-    }
-}
-
-function turnOffLight() {
-    v3.discovery.nupnpSearch()
-        .then((searchResults) => {
-            const host = searchResults[0].ipaddress;
-            return v3.api.createLocal(host).connect(BridgeUser);
-        })
-        .then((api) => {
-            const stateOFF = new LightState().off();
-            api.lights.setLightState(LIGHT_ID, stateOFF);
-        })
-}
 
 exports.start = (bridgeUser, Token, TokenSecret, light, twitterUser) => {
 
@@ -95,7 +60,6 @@ exports.start = (bridgeUser, Token, TokenSecret, light, twitterUser) => {
 
     //Bypass setInterval
     getFollowersCount();
-    changeLightColor()
 
     //Launch Followers collect
     refreshFollower = setInterval(() => {
@@ -103,13 +67,11 @@ exports.start = (bridgeUser, Token, TokenSecret, light, twitterUser) => {
     }, 1000 * 2);
 
     //Launch Light system
-    refreshLight = setInterval(() => {
-        changeLightColor();
+    refreshData = setInterval(() => {
         listener.sendTwitterData(true, {
             followerCount: fansCount,
             user,
-            pipeline,
-            colorDisplay
+            pipeline: lightAPI.pipeline.length,
         })
     }, 2000);
 
@@ -118,10 +80,9 @@ exports.start = (bridgeUser, Token, TokenSecret, light, twitterUser) => {
 exports.stop = () => {
     started = false;
     getTwitterFollowers = null;
-    pipeline = 0;
     fansCount = undefined;
-    turnOffLight();
-    clearInterval(refreshLight)
+    lightAPI.turnOffLight(BridgeUser);
+    clearInterval(refreshData)
     clearInterval(refreshFollower)
 }
 

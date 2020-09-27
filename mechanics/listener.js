@@ -5,14 +5,14 @@ const twitter = require("./twitter.js");
 const insta = require("./instagram.js");
 const twitch = require("./twitch.js");
 const keys = require("../config/config.json");
-const light = require("./getAllLights");
+const lightAPI = require("./lightAPI");
 const auth = require("oauth-electron-twitter")
 
 let mainWindow = global.mainWindow;
 
 
 ipcMain.on("askLights", async (event, bridge) => {
-    light.getAllLights(bridge).then((data) => {
+    lightAPI.getAllLights(bridge).then((data) => {
         mainWindow.webContents.send("callBackLights", true, data);
     }).catch((err) => {
         mainWindow.webContents.send("callBackLights", false, err);
@@ -84,13 +84,11 @@ ipcMain.on("StartInstaBot", async (event, data) => {
 
 ipcMain.on("StopInstaBot", async (event) => {
     insta.stop();
-    console.log("stop insta")
     mainWindow.webContents.send("callBackInstaBot", true);
 });
 
 ipcMain.on("askTwitchConnexion", async (event) => {
     twitch.getUserID().then((userID) => {
-        console.log(userID)
         if(userID === undefined) {
             mainWindow.webContents.send("callBackTwitchConnexion", false, null);
         } else {

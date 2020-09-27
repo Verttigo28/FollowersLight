@@ -1,7 +1,6 @@
 const twitterFollowersCount = require("twitter-followers-count");
 const lightAPI = require("./lightAPI");
 const listener = require("./listener")
-
 const config = require("../config/config.json")
 
 let BridgeUser;
@@ -11,9 +10,8 @@ let fansCount;
 let refreshFollower;
 let refreshData;
 let started = false;
-
-exports.started = started;
-
+let rgb;
+let random;
 
 let getTwitterFollowers;
 
@@ -27,12 +25,12 @@ function getFollowersCount() {
 
             if (count > fansCount) {
                 let diff = count - fansCount;
-                for(let i=0; i< diff;i++){
-                    lightAPI.changeLightColor(true, null, LIGHT_ID, BridgeUser)
+                for (let i = 0; i < diff; i++) {
+                    lightAPI.changeLightColor(random, rgb, LIGHT_ID, BridgeUser, "twitter")
                 }
             }
             fansCount = count;
-        } catch(e) {
+        } catch (e) {
             started = false;
             getTwitterFollowers = null;
             lightAPI.turnOffLight(BridgeUser);
@@ -44,18 +42,20 @@ function getFollowersCount() {
 }
 
 
-exports.start = (bridgeUser, Token, TokenSecret, light, twitterUser) => {
+exports.start = (data) => {
 
-    BridgeUser = bridgeUser;
-    LIGHT_ID = light;
+    BridgeUser = data.bridgeUser;
+    LIGHT_ID = data.light;
     started = true;
-    user = twitterUser;
+    user = data.twitterUser;
+    rgb = data.color.rgb;
+    random = data.color.random;
 
     getTwitterFollowers = twitterFollowersCount({
         consumer_key: config.consumer_key,
         consumer_secret: config.consumer_secret,
-        access_token_key: Token,
-        access_token_secret: TokenSecret,
+        access_token_key: data.Token,
+        access_token_secret: data.TokenSecret,
     })
 
     //Bypass setInterval
@@ -82,6 +82,7 @@ exports.stop = () => {
     getTwitterFollowers = null;
     fansCount = undefined;
     lightAPI.turnOffLight(BridgeUser);
+    lightAPI.clearPipelineFromType("twitter");
     clearInterval(refreshData)
     clearInterval(refreshFollower)
 }

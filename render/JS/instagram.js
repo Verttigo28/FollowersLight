@@ -2,6 +2,27 @@
 
 let started = false;
 
+const pickr1 = new Pickr({
+    el: '#color-picker-1',
+    useAsButton: true,
+    default: "303030",
+    components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+        interaction: {
+            hex: false,
+            rgba: true,
+            hsla: false,
+            hsva: false,
+            cmyk: false,
+            input: true,
+            clear: true,
+            save: true
+        }
+    }
+});
+
 function getLights() {
     //Send request
     window.api.send("askLights", localStorage.getItem("username"));
@@ -12,6 +33,7 @@ function getLights() {
             return;
         }
         let ls = document.getElementById("lightSelector");
+        while (ls.firstChild) ls.removeChild(ls.lastChild);
         data.forEach((light) => {
             let option = document.createElement("option");
             option.text = light._data.name;
@@ -21,22 +43,45 @@ function getLights() {
     });
 }
 
+function colorRadio(radio) {
+    if (radio.value === "random") {
+        document.getElementById("color-picker-1").hidden = true;
+    } else if (radio.value === "manual") {
+        document.getElementById("color-picker-1").hidden = false;
+    }
+}
+
+function getRadioValue() {
+    let value = document.querySelector('input[name="insta"]:checked').value;
+    if (value === "random") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function toggleBot() {
     if (!started) {
         let bridgeUser = localStorage.getItem("username");
         let light = document.getElementById("lightSelector").value;
         let instaUser = document.getElementById("inputUsername").value;
+        let rgb = pickr1.getSelectedColor().toRGBA();
+        rgb.splice(-1, 1)
         let data = {
             bridgeUser,
             light,
-            instaUser
+            instaUser,
+            color: {
+                random: getRadioValue(),
+                rgb: rgb
+            }
         }
         window.api.send("StartInstaBot", data);
         started = true;
         document.getElementById("toggleBot").innerText = "Stop Bot";
     } else {
         started = false;
-        console.log("ICI")
         window.api.send("StopInstaBot");
         window.api.receive("callBackInstaBot", (success) => {
             console.log("Back")

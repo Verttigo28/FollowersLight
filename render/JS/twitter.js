@@ -2,6 +2,27 @@
 
 let started = false;
 
+const pickr1 = new Pickr({
+    el: '#color-picker-1',
+    useAsButton: true,
+    default: "303030",
+    components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+        interaction: {
+            hex: false,
+            rgba: true,
+            hsla: false,
+            hsva: false,
+            cmyk: false,
+            input: true,
+            clear: true,
+            save: true
+        }
+    }
+});
+
 function lock() {
     document.getElementById("inputUsername").disabled = true;
     document.getElementById("lightSelector").disabled = true;
@@ -38,6 +59,7 @@ function getLights() {
             return;
         }
         let ls = document.getElementById("lightSelector");
+        while (ls.firstChild) ls.removeChild(ls.lastChild);
         data.forEach((light) => {
             let option = document.createElement("option");
             option.text = light._data.name;
@@ -68,6 +90,22 @@ function disconnect() {
     location.reload();
 }
 
+function colorRadio(radio) {
+    if (radio.value === "random") {
+        document.getElementById("color-picker-1").hidden = true;
+    } else if (radio.value === "manual") {
+        document.getElementById("color-picker-1").hidden = false;
+    }
+}
+function getRadioValue() {
+    let value = document.querySelector('input[name="twitter"]:checked').value;
+    if (value === "random") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function toggleBot() {
     if (!started) {
         let Token = localStorage.getItem("Token");
@@ -75,12 +113,18 @@ function toggleBot() {
         let bridgeUser = localStorage.getItem("username");
         let light = document.getElementById("lightSelector").value;
         let twitterUser = document.getElementById("inputUsername").value;
+        let rgb = pickr1.getSelectedColor().toRGBA();
+        rgb.splice(-1, 1)
         let data = {
             Token,
             TokenSecret,
             bridgeUser,
             light,
-            twitterUser
+            twitterUser,
+            color: {
+                random: getRadioValue(),
+                rgb: rgb
+            }
         }
         window.api.send("StartTwitterBot", data);
         started = true;

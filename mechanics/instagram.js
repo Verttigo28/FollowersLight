@@ -1,6 +1,5 @@
 const listener = require("./listener")
 const lightAPI = require("./lightAPI");
-
 const fetch = require('node-fetch');
 
 let BridgeUser;
@@ -10,21 +9,21 @@ let fansCount;
 let refreshFollower;
 let refreshData;
 let started = false;
-
-exports.started = started;
+let rgb;
+let random;
 
 function getFollowersCount() {
 
     fetch("https://www.instagram.com/" + user + "/?__a=1")
         .then(res => res.json())
         .then(json => {
-            let count =  json.graphql.user.edge_followed_by.count;
+            let count = json.graphql.user.edge_followed_by.count;
             if (fansCount === undefined) fansCount = count;
 
             if (count > fansCount) {
                 let diff = count - fansCount;
-                for(let i=0; i< diff;i++){
-                    lightAPI.changeLightColor(true, null, LIGHT_ID, BridgeUser)
+                for (let i = 0; i < diff; i++) {
+                    lightAPI.changeLightColor(random, rgb, LIGHT_ID, BridgeUser, "insta")
                 }
             }
             fansCount = count;
@@ -37,12 +36,13 @@ function getFollowersCount() {
     });
 }
 
-exports.start = (bridgeUser, light, instaUser) => {
-
-    BridgeUser = bridgeUser;
-    LIGHT_ID = light;
+exports.start = (data) => {
+    BridgeUser = data.bridgeUser;
+    LIGHT_ID = data.light;
     started = true;
-    user = instaUser;
+    user = data.instaUser;
+    rgb = data.color.rgb;
+    random = data.color.random;
 
     //Bypass setInterval
     getFollowersCount();
@@ -69,6 +69,7 @@ exports.stop = () => {
     lightAPI.turnOffLight(BridgeUser);
     clearInterval(refreshData)
     clearInterval(refreshFollower)
+    lightAPI.clearPipelineFromType("insta");
 }
 
 exports.getStatus = () => {

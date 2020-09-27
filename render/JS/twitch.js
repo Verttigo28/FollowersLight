@@ -236,6 +236,7 @@ function getLights() {
         let array = [1,2,3,4];
         array.forEach((id) => {
             let ls = document.getElementById("lightSelector" + id);
+            while (ls.firstChild) ls.removeChild(ls.lastChild);
             data.forEach((light) => {
                 let option = document.createElement("option");
                 option.text = light._data.name;

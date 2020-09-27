@@ -9,8 +9,6 @@ const redirectURI = "http://localhost/";
 
 let onBits, onBitsBadgeUnlock, onModAction, onSubscription, started, userID, BridgeUser, busy;
 
-exports.started = started;
-
 async function loginTwitch() {
     const authProvider = new ElectronAuthProvider({
         clientId,
@@ -49,28 +47,28 @@ exports.start = async (data) => {
             }
 
             for (let i = 0; i < pipeline; i++) {
-                lightAPI.changeLightColor(data[0].color.random, data[0].onBits.color.rgb, data[0].lightID, BridgeUser)
+                lightAPI.changeLightColor(data[0].color.random, data[0].onBits.color.rgb, data[0].lightID, BridgeUser, "twitch")
             }
         });
     }
 
     if (data[1].active) {
         onSubscription = await pubSubClient.onSubscription(userID, () => {
-            lightAPI.changeLightColor(data[1].color.random, data[1].color.rgb, data[1].lightID, BridgeUser)
+            lightAPI.changeLightColor(data[1].color.random, data[1].color.rgb, data[1].lightID, BridgeUser, "twitch")
         });
     }
 
     /* Not working
     if (data[2].active) {
         onBitsBadgeUnlock = await pubSubClient.onBitsBadgeUnlock(userID, () => {
-             lightAPI.changeLightColor(data[2].color.random, data[2].color.rgb, data[2].lightID, BridgeUser)
+             lightAPI.changeLightColor(data[2].color.random, data[2].color.rgb, data[2].lightID, BridgeUser, "twitch")
         });
     }
      */
 
     if (data[3].active) {
         onModAction = await pubSubClient.onModAction(userID, userID, () => {
-            lightAPI.changeLightColor(data[3].color.random, data[3].color.rgb, data[3].lightID, BridgeUser)
+            lightAPI.changeLightColor(data[3].color.random, data[3].color.rgb, data[3].lightID, BridgeUser, "twitch")
         });
     }
 
@@ -80,10 +78,16 @@ exports.stop = () => {
     started = false;
     busy = false;
     lightAPI.turnOffLight(BridgeUser);
+    lightAPI.clearPipelineFromType("twitch");
     onBitsBadgeUnlock.remove();
     onBits.remove();
     onModAction.remove();
     onSubscription.remove();
 }
+
+exports.getStatus = () => {
+    return started;
+}
+
 
 

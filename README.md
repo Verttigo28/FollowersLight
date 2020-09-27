@@ -53,7 +53,7 @@ Every 2 seconds the lightSystem will check if the pipeline is empty, if not he w
   * On Subscription : When someone sub to you.
   * On Bits Badge unlock : When someone have a new bits badge.
   * On Mod action : When your mod punish someone!
-* Color Selection, For the moment only for TwitchBot
+* Color Selection, choose the color you want!
   
 ## TODO List
 

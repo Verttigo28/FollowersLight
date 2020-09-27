@@ -1,6 +1,10 @@
 const v3 = require("node-hue-api").v3;
 const LightState = v3.lightStates.LightState;
 
+const twitter = require("./twitter");
+const twitch = require("./twitch");
+const insta = require("./instagram");
+
 let pipeline = [];
 let busy = false;
 
@@ -39,9 +43,10 @@ exports.turnOffLight = (BridgeUser) => {
         });
 }
 
-exports.changeLightColor = (random, color, lightID, BridgeUser) => {
+exports.changeLightColor = (random, color, lightID, BridgeUser, type) => {
+    if (type === "twitter" && !twitter.getStatus() || type === "insta" && !insta.getStatus() || type === "twitch" && !twitch.getStatus()) return;
     if (busy) {
-        pipeline.push({random, color, lightID, BridgeUser});
+        pipeline.push({random, color, lightID, BridgeUser, type});
     } else {
         busy = true;
         v3.discovery.nupnpSearch()
@@ -63,10 +68,15 @@ exports.changeLightColor = (random, color, lightID, BridgeUser) => {
                     setTimeout(() => {
                         hueAPI.lights.setLightState(lightID, stateOFF);
                         pipeline.shift();
-                        if (pipeline.length) this.changeLightColor(pipeline[0].random, pipeline[0].color, pipeline[0].lightID ,pipeline[0].BridgeUser);
+                        if (pipeline.length) this.changeLightColor(pipeline[0].random, pipeline[0].color, pipeline[0].lightID, pipeline[0].BridgeUser, pipeline[0].type);
                         busy = false;
                     }, 1000);
                 });
             })
     }
+}
+
+exports.clearPipelineFromType = (name) => {
+    let b = pipeline.filter(e => e.type === name);
+    b.forEach(f => pipeline.splice(pipeline.findIndex(e => e.type === f.type), 1));
 }

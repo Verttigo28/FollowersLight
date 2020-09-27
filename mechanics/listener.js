@@ -42,15 +42,15 @@ ipcMain.on("askBridgePairing", async (event) => {
 });
 
 ipcMain.on("isTwitterRunning", async (event) => {
-    mainWindow.webContents.send("callbackTwitterRunning", true, twitter.started);
+    mainWindow.webContents.send("callbackTwitterRunning", true, twitter.getStatus());
 });
 
 ipcMain.on("isInstaRunning", async (event) => {
-    mainWindow.webContents.send("callbackInstaRunning", true, insta.started);
+    mainWindow.webContents.send("callbackInstaRunning", true, insta.getStatus());
 });
 
 ipcMain.on("isTwitchRunning", async (event) => {
-    mainWindow.webContents.send("callbackTwitchRunning", true, twitch.started);
+    mainWindow.webContents.send("callbackTwitchRunning", true, twitch.getStatus());
 });
 
 ipcMain.on("askStatusApp", async (event) => {
@@ -61,7 +61,7 @@ ipcMain.on("askStatusApp", async (event) => {
 });
 
 ipcMain.on("StartTwitterBot", async (event, data) => {
-    twitter.start(data.bridgeUser, data.Token, data.TokenSecret, data.light, data.twitterUser);
+    twitter.start(data);
 });
 
 ipcMain.on("StopTwitterBot", async (event) => {
@@ -79,7 +79,7 @@ ipcMain.on("StopTwitchBot", async (event) => {
 });
 
 ipcMain.on("StartInstaBot", async (event, data) => {
-    insta.start(data.bridgeUser, data.light, data.instaUser);
+    insta.start(data);
 });
 
 ipcMain.on("StopInstaBot", async (event) => {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Baptiste Ferrando">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="CSS/dashboard.css">
     <title>Followers Light - Let your followers control your light</title>
@@ -38,7 +39,9 @@
                 </li>
             </ul>
         </div>
-        <button id="checkUpdates" class="btn btn-outline-success btn-sm" type="submit" onclick="checkUpdates()">Check for updates</button>
+        <button id="checkUpdates" class="btn btn-outline-success btn-sm" type="submit" onclick="checkUpdates()">Check
+            for updates
+        </button>
     </nav>
 </header>
 
@@ -67,6 +70,22 @@
             <select class="form-control w-25 d-inline-block mb-3" id="lightSelector">
                 <option disabled selected value="1">Select light</option>
             </select>
+            <div class="mb-3 mt-1">
+                <form autocomplete="off">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="twitter" id="Radio1"
+                               value="random" onclick="colorRadio(this)" checked>
+                        <label class="form-check-label" for="Radio1">Random</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="twitter" id="Radio2"
+                               value="manual" onclick="colorRadio(this)">
+                        <label class="form-check-label" for="Radio2">Manual</label>
+                    </div>
+                </form>
+                <button hidden class="btn btn-outline-primary btn-sm" id="color-picker-1">Choose your color
+                </button>
+            </div>
 
             <div class="text-muted">Followers counts <strong id="counts">0</strong></div>
             <div class="text-muted">Followers in pipeline <strong id="pipeline">0</strong></div>
@@ -82,6 +101,7 @@
 
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 <script src="JS/twitter.js"></script>
 <script src="JS/global.js"></script>
 <script src="../node_modules/jquery/dist/jquery.js"></script>

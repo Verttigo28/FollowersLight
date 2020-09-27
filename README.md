@@ -57,18 +57,18 @@ Every 2 seconds the lightSystem will check if the pipeline is empty, if not he w
   
 ## TODO List
 
-*̶ ̶A̶u̶t̶o̶-̶U̶p̶d̶a̶t̶e̶
-  *̶ ̶T̶h̶e̶ ̶a̶u̶t̶o̶-̶u̶p̶d̶a̶t̶e̶ ̶w̶i̶l̶l̶ ̶b̶e̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶e̶d̶ ̶s̶o̶o̶n̶.̶ ̶ ̶ ̶
-  *̶ ̶N̶o̶ ̶n̶e̶e̶d̶ ̶t̶o̶ ̶r̶e̶i̶n̶s̶t̶a̶l̶l̶ ̶t̶h̶e̶ ̶s̶o̶f̶t̶w̶a̶r̶e̶ ̶a̶f̶t̶e̶r̶ ̶t̶h̶a̶t̶ ̶r̶e̶l̶e̶a̶s̶e̶.̶
-*̶ ̶I̶n̶s̶t̶a̶g̶r̶a̶m̶ ̶S̶u̶p̶p̶o̶r̶t̶ ̶ ̶ ̶
-  *̶ ̶L̶i̶k̶e̶ ̶T̶w̶i̶t̶c̶h̶,̶ ̶i̶ ̶a̶l̶r̶e̶a̶d̶y̶ ̶k̶n̶o̶w̶ ̶h̶o̶w̶ ̶t̶o̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶ ̶t̶h̶a̶t̶,̶ ̶o̶n̶l̶y̶ ̶n̶e̶e̶d̶ ̶t̶i̶m̶e̶.̶  
-*̶ ̶T̶w̶i̶t̶c̶h̶ ̶S̶u̶p̶p̶o̶r̶t̶ ̶ ̶ ̶
-  *̶ ̶I̶ ̶a̶l̶r̶e̶a̶d̶y̶ ̶k̶n̶o̶w̶ ̶h̶o̶w̶ ̶t̶o̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶e̶d̶ ̶t̶h̶a̶t̶,̶ ̶i̶ ̶o̶n̶l̶y̶ ̶n̶e̶e̶d̶ ̶t̶i̶m̶e̶.̶ ̶ ̶
-  ̶*̶ ̶W̶i̶l̶l̶ ̶s̶u̶p̶p̶o̶r̶t̶ ̶n̶e̶w̶ ̶s̶u̶b̶,̶ ̶b̶i̶t̶s̶ ̶d̶o̶n̶a̶t̶i̶o̶n̶,̶ ̶r̶e̶ ̶s̶u̶b̶ ̶,̶ ̶M̶o̶d̶ ̶a̶c̶t̶i̶o̶n̶s̶ ̶(̶l̶i̶k̶e̶ ̶b̶a̶n̶)̶,̶ ̶n̶e̶w̶ ̶b̶i̶t̶s̶ ̶b̶a̶d̶g̶e̶
-*̶ ̶C̶o̶l̶o̶r̶ ̶s̶e̶l̶e̶c̶t̶i̶o̶n̶ ̶ ̶ 
-  ̶*̶ ̶F̶o̶r̶ ̶t̶h̶e̶ ̶m̶o̶m̶e̶n̶t̶ ̶o̶n̶l̶y̶ ̶a̶ ̶r̶a̶n̶d̶o̶m̶ ̶c̶o̶l̶o̶r̶ ̶c̶a̶n̶ ̶b̶e̶ ̶s̶p̶e̶c̶i̶f̶i̶e̶d̶,̶ ̶d̶u̶e̶ ̶t̶o̶ ̶a̶ ̶l̶a̶c̶k̶ ̶o̶f̶ ̶t̶i̶m̶e̶.̶ ̶ ̶ ̶
-  *̶ ̶S̶l̶i̶d̶e̶r̶ ̶b̶e̶t̶w̶e̶e̶n̶ ̶c̶o̶l̶o̶r̶ ̶r̶a̶n̶g̶e̶.̶ ̶ ̶ ̶
-  *̶ ̶C̶o̶l̶o̶r̶ ̶p̶i̶c̶k̶e̶r̶.̶
+* ̶A̶u̶t̶o̶-̶U̶p̶d̶a̶t̶e̶
+  * ̶T̶h̶e̶ ̶a̶u̶t̶o̶-̶u̶p̶d̶a̶t̶e̶ ̶w̶i̶l̶l̶ ̶b̶e̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶e̶d̶ ̶s̶o̶o̶n̶.̶ ̶ ̶ ̶
+  * ̶N̶o̶ ̶n̶e̶e̶d̶ ̶t̶o̶ ̶r̶e̶i̶n̶s̶t̶a̶l̶l̶ ̶t̶h̶e̶ ̶s̶o̶f̶t̶w̶a̶r̶e̶ ̶a̶f̶t̶e̶r̶ ̶t̶h̶a̶t̶ ̶r̶e̶l̶e̶a̶s̶e̶.̶
+* ̶I̶n̶s̶t̶a̶g̶r̶a̶m̶ ̶S̶u̶p̶p̶o̶r̶t̶ ̶ ̶ ̶
+  * ̶L̶i̶k̶e̶ ̶T̶w̶i̶t̶c̶h̶,̶ ̶i̶ ̶a̶l̶r̶e̶a̶d̶y̶ ̶k̶n̶o̶w̶ ̶h̶o̶w̶ ̶t̶o̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶ ̶t̶h̶a̶t̶,̶ ̶o̶n̶l̶y̶ ̶n̶e̶e̶d̶ ̶t̶i̶m̶e̶.̶  
+* ̶T̶w̶i̶t̶c̶h̶ ̶S̶u̶p̶p̶o̶r̶t̶ ̶ ̶ ̶
+  * ̶I̶ ̶a̶l̶r̶e̶a̶d̶y̶ ̶k̶n̶o̶w̶ ̶h̶o̶w̶ ̶t̶o̶ ̶i̶m̶p̶l̶e̶m̶e̶n̶t̶e̶d̶ ̶t̶h̶a̶t̶,̶ ̶i̶ ̶o̶n̶l̶y̶ ̶n̶e̶e̶d̶ ̶t̶i̶m̶e̶.̶ ̶ ̶
+  * ̶W̶i̶l̶l̶ ̶s̶u̶p̶p̶o̶r̶t̶ ̶n̶e̶w̶ ̶s̶u̶b̶,̶ ̶b̶i̶t̶s̶ ̶d̶o̶n̶a̶t̶i̶o̶n̶,̶ ̶r̶e̶ ̶s̶u̶b̶ ̶,̶ ̶M̶o̶d̶ ̶a̶c̶t̶i̶o̶n̶s̶ ̶(̶l̶i̶k̶e̶ ̶b̶a̶n̶)̶,̶ ̶n̶e̶w̶ ̶b̶i̶t̶s̶ ̶b̶a̶d̶g̶e̶
+* ̶C̶o̶l̶o̶r̶ ̶s̶e̶l̶e̶c̶t̶i̶o̶n̶ ̶ ̶ 
+  * ̶F̶o̶r̶ ̶t̶h̶e̶ ̶m̶o̶m̶e̶n̶t̶ ̶o̶n̶l̶y̶ ̶a̶ ̶r̶a̶n̶d̶o̶m̶ ̶c̶o̶l̶o̶r̶ ̶c̶a̶n̶ ̶b̶e̶ ̶s̶p̶e̶c̶i̶f̶i̶e̶d̶,̶ ̶d̶u̶e̶ ̶t̶o̶ ̶a̶ ̶l̶a̶c̶k̶ ̶o̶f̶ ̶t̶i̶m̶e̶.̶ ̶ ̶ ̶
+  * ̶S̶l̶i̶d̶e̶r̶ ̶b̶e̶t̶w̶e̶e̶n̶ ̶c̶o̶l̶o̶r̶ ̶r̶a̶n̶g̶e̶.̶ ̶ ̶ ̶
+  * ̶C̶o̶l̶o̶r̶ ̶p̶i̶c̶k̶e̶r̶.̶
 * Multi bridge support
 * Other smart light support.
 

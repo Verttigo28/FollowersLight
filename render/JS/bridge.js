@@ -1,7 +1,7 @@
 'use strict'
 
 function checkPairingStatus() {
-    if(localStorage.getItem("username") !== null) {
+    if (localStorage.getItem("username") !== null) {
         document.getElementById("pairingTitle").innerText = "Hue Bridge : linked";
         document.getElementById("hueLinkImg").src = "data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=";
         document.getElementById("text1").innerText = "Bridge User : " + localStorage.getItem("username");
@@ -11,7 +11,7 @@ function checkPairingStatus() {
 }
 
 function toggle() {
-    if(localStorage.getItem("username") !== null) {
+    if (localStorage.getItem("username") !== null) {
         localStorage.removeItem("username");
         localStorage.removeItem("bridgeName");
         localStorage.removeItem("bridgeIP");
@@ -22,7 +22,7 @@ function toggle() {
         //Request back
         window.api.receive("callbackBridge", (success, data) => {
             console.log(success)
-            if(!success) {
+            if (!success) {
                 alert(data.message);
                 return;
             }

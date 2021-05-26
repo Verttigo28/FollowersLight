@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Baptiste Ferrando">
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="CSS/dashboard.css">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="Baptiste Ferrando" name="author">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="CSS/dashboard.css" rel="stylesheet">
     <title>Followers Light - Let your followers control your light</title>
 </head>
 <body onload="checkVitals()">
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
-                data-target="#navbarsFL" aria-controls="navbarsFL" aria-expanded="false"
-                aria-label="Toggle navigation">
+        <button aria-controls="navbarsFL" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler d-lg-none" data-target="#navbarsFL" data-toggle="collapse"
+                type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -38,7 +38,7 @@
                 </li>
             </ul>
         </div>
-        <button id="checkUpdates" class="btn btn-outline-success btn-sm" type="submit" onclick="checkUpdates()">Check
+        <button class="btn btn-outline-success btn-sm" id="checkUpdates" onclick="checkUpdates()" type="submit">Check
             for updates
         </button>
     </nav>
@@ -48,40 +48,40 @@
 <div class="container-fluid mt-5">
     <div class="row content">
 
-        <main role="main" class="col-sm-9 mx-auto col-md-10 pt-3">
+        <main class="col-sm-9 mx-auto col-md-10 pt-3" role="main">
 
             <section class="row text-center">
                 <div class="col-sm-3 placeholder">
-                    <img id="hueLinkImg"
-                         src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg=="
-                         width="150"
-                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                    <img alt="Generic placeholder thumbnail"
+                         class="img-fluid rounded-circle"
+                         height="150"
+                         id="hueLinkImg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg==" width="150">
                     <h4>Hue Bridge</h4>
-                    <div id="hueLink" class="text-muted">Not Linked</div>
+                    <div class="text-muted" id="hueLink">Not Linked</div>
                 </div>
                 <div class="col-sm-3 placeholder">
-                    <img id="twitterImage"
-                         src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg=="
-                         width="150"
-                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                    <img alt="Generic placeholder thumbnail"
+                         class="img-fluid rounded-circle"
+                         height="150"
+                         id="twitterImage" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg==" width="150">
                     <h4>Twitter</h4>
-                    <span id="twitterSpan" class="text-muted">Desactivated</span>
+                    <span class="text-muted" id="twitterSpan">Desactivated</span>
                 </div>
                 <div class="col-sm-3 placeholder">
-                    <img id="instaImage"
-                         src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg=="
-                         width="150"
-                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                    <img alt="Generic placeholder thumbnail"
+                         class="img-fluid rounded-circle"
+                         height="150"
+                         id="instaImage" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg==" width="150">
                     <h4>Instagram</h4>
-                    <span id="instaSpan" class="text-muted">Deactivated</span>
+                    <span class="text-muted" id="instaSpan">Deactivated</span>
                 </div>
                 <div class="col-sm-3 placeholder">
-                    <img id="twitchImage"
-                         src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg=="
-                         width="150"
-                         height="150" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                    <img alt="Generic placeholder thumbnail"
+                         class="img-fluid rounded-circle"
+                         height="150"
+                         id="twitchImage" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwBQAE+gH1HVvW9wAAAABJRU5ErkJggg==" width="150">
                     <h4>Twitch</h4>
-                    <span id="twitchSpan" class="text-muted">Deactivated</span>
+                    <span class="text-muted" id="twitchSpan">Deactivated</span>
                 </div>
             </section>
 

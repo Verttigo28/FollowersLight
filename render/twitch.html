@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Baptiste Ferrando">
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
-    <link rel="stylesheet" href="CSS/dashboard.css">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="Baptiste Ferrando" name="author">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" rel="stylesheet"/>
+    <link href="CSS/dashboard.css" rel="stylesheet">
     <title>Followers Light - Let your followers control your light</title>
 </head>
 <body onload="init()">
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
-                data-target="#navbarsFL" aria-controls="navbarsFL" aria-expanded="false"
-                aria-label="Toggle navigation">
+        <button aria-controls="navbarsFL" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler d-lg-none" data-target="#navbarsFL" data-toggle="collapse"
+                type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -39,52 +39,52 @@
                 </li>
             </ul>
         </div>
-        <button id="checkUpdates" class="btn btn-outline-success btn-sm" type="submit" onclick="checkUpdates()">Check
+        <button class="btn btn-outline-success btn-sm" id="checkUpdates" onclick="checkUpdates()" type="submit">Check
             for updates
         </button>
     </nav>
 </header>
 
-<h1 hidden id="notLink" class="mt-5 text-center">You need to pair a Hue Bridge</h1>
+<h1 class="mt-5 text-center" hidden id="notLink">You need to pair a Hue Bridge</h1>
 
-<div id="global" class="container mt-5 pt-2 text-center">
+<div class="container mt-5 pt-2 text-center" id="global">
 
     <h1>Twitch</h1>
 
-    <div id="noTwitch" class="row" hidden>
+    <div class="row" hidden id="noTwitch">
         <div class="col">
-            <div id="subtitle" class="text-muted mb-3">You need to connect your Twitch account before starting the
+            <div class="text-muted mb-3" id="subtitle">You need to connect your Twitch account before starting the
                 bot
             </div>
-            <button id="connectTwitchButton" class="btn btn-outline-primary mt-2" onclick="connectTwitch()">Connect
+            <button class="btn btn-outline-primary mt-2" id="connectTwitchButton" onclick="connectTwitch()">Connect
                 Twitch
             </button>
         </div>
     </div>
 
-    <div id="TwitchApp" class="row text-center mt-1">
+    <div class="row text-center mt-1" id="TwitchApp">
         <div class="col">
 
             <div class="md-5" style="height: 40px">
                 <form autocomplete="off">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="chk1" value="bits" onclick="enabler(this)"
-                               checked>
+                        <input checked class="form-check-input" id="chk1" onclick="enabler(this)" type="checkbox"
+                               value="bits">
                         <label class="form-check-label" for="chk1">BitsEvent</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="chk2" value="sub" onclick="enabler(this)"
-                               checked>
+                        <input checked class="form-check-input" id="chk2" onclick="enabler(this)" type="checkbox"
+                               value="sub">
                         <label class="form-check-label" for="chk2">SubEvent</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="chk3" value="badge" onclick="enabler(this)"
-                               checked>
+                        <input checked class="form-check-input" id="chk3" onclick="enabler(this)" type="checkbox"
+                               value="badge">
                         <label class="form-check-label" for="chk3">BadgeEvent</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="chk4" value="mod" onclick="enabler(this)"
-                               checked>
+                        <input checked class="form-check-input" id="chk4" onclick="enabler(this)" type="checkbox"
+                               value="mod">
                         <label class="form-check-label" for="chk4">ModEvent</label>
                     </div>
                 </form>
@@ -92,7 +92,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div id="bitsDiv" class="col" style="height: 180px;">
+                    <div class="col" id="bitsDiv" style="height: 180px;">
                         <h6 class="">Bits Event</h6>
                         <select class="form-control w-50 d-inline-block mb-2 custom-select-sm" id="lightSelector1">
                             <option disabled selected value="1">Select light</option>
@@ -100,20 +100,20 @@
                         <div class="text-muted">Color selection</div>
                         <form autocomplete="off">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="bits" id="Radio1"
-                                       value="random" onclick="colorRadio(this)" checked>
+                                <input checked class="form-check-input" id="Radio1" name="bits"
+                                       onclick="colorRadio(this)" type="radio" value="random">
                                 <label class="form-check-label" for="Radio1">Random</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="bits" id="Radio2"
-                                       value="manual" onclick="colorRadio(this)">
+                                <input class="form-check-input" id="Radio2" name="bits" onclick="colorRadio(this)"
+                                       type="radio" value="manual">
                                 <label class="form-check-label" for="Radio2">Manual</label>
                             </div>
                         </form>
-                        <button hidden class="btn btn-outline-primary btn-sm" id="color-picker-1">Choose your color
+                        <button class="btn btn-outline-primary btn-sm" hidden id="color-picker-1">Choose your color
                         </button>
                     </div>
-                    <div id="subDiv" class="col" style="height: 180px">
+                    <div class="col" id="subDiv" style="height: 180px">
                         <h6 class="">Sub Event</h6>
                         <select class="form-control w-50 d-inline-block mb-2 custom-select-sm" id="lightSelector2">
                             <option disabled selected value="1">Select light</option>
@@ -121,21 +121,21 @@
                         <div class="text-muted">Color selection</div>
                         <form autocomplete="off">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="sub" id="Radio3"
-                                       value="random" onclick="colorRadio(this)" checked>
+                                <input checked class="form-check-input" id="Radio3" name="sub"
+                                       onclick="colorRadio(this)" type="radio" value="random">
                                 <label class="form-check-label" for="Radio3">Random</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="sub" id="Radio4"
-                                       value="manual" onclick="colorRadio(this)">
+                                <input class="form-check-input" id="Radio4" name="sub" onclick="colorRadio(this)"
+                                       type="radio" value="manual">
                                 <label class="form-check-label" for="Radio4">Manual</label>
                             </div>
                         </form>
-                        <button hidden class="btn btn-outline-primary btn-sm" id="color-picker-2">Choose your color
+                        <button class="btn btn-outline-primary btn-sm" hidden id="color-picker-2">Choose your color
                         </button>
                     </div>
                     <div class="w-100"></div>
-                    <div id="badgeDiv" class="col" style="height: 190px">
+                    <div class="col" id="badgeDiv" style="height: 190px">
                         <h6 class="">Bits Badge Event</h6>
                         <select class="form-control w-50 d-inline-block mb-2 custom-select-sm" id="lightSelector3">
                             <option disabled selected value="1">Select light</option>
@@ -143,20 +143,20 @@
                         <div class="text-muted">Color selection</div>
                         <form autocomplete="off">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="badge" id="Radio5"
-                                       value="random" onclick="colorRadio(this)" checked>
+                                <input checked class="form-check-input" id="Radio5" name="badge"
+                                       onclick="colorRadio(this)" type="radio" value="random">
                                 <label class="form-check-label" for="Radio5">Random</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="badge" id="Radio6"
-                                       value="manual" onclick="colorRadio(this)">
+                                <input class="form-check-input" id="Radio6" name="badge" onclick="colorRadio(this)"
+                                       type="radio" value="manual">
                                 <label class="form-check-label" for="Radio6">Manual</label>
                             </div>
                         </form>
-                        <button hidden class="btn btn-outline-primary btn-sm" id="color-picker-3">Choose your color
+                        <button class="btn btn-outline-primary btn-sm" hidden id="color-picker-3">Choose your color
                         </button>
                     </div>
-                    <div id="modDiv" class="col" style="height: 190px">
+                    <div class="col" id="modDiv" style="height: 190px">
                         <h6 class="">Mod Event</h6>
                         <select class="form-control w-50 d-inline-block mb-2 custom-select-sm" id="lightSelector4">
                             <option disabled selected value="1">Select light</option>
@@ -164,28 +164,28 @@
                         <div class="text-muted">Color selection</div>
                         <form autocomplete="off">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="mod" id="Radio7"
-                                       value="random" onclick="colorRadio(this)" checked>
+                                <input checked class="form-check-input" id="Radio7" name="mod"
+                                       onclick="colorRadio(this)" type="radio" value="random">
                                 <label class="form-check-label" for="Radio7">Random</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="mod" id="Radio8"
-                                       value="manual" onclick="colorRadio(this)">
+                                <input class="form-check-input" id="Radio8" name="mod" onclick="colorRadio(this)"
+                                       type="radio" value="manual">
                                 <label class="form-check-label" for="Radio8">Manual</label>
                             </div>
                         </form>
-                        <button hidden class="btn btn-outline-primary btn-sm" id="color-picker-4">Choose your color
+                        <button class="btn btn-outline-primary btn-sm" hidden id="color-picker-4">Choose your color
                         </button>
                     </div>
                 </div>
             </div>
 
 
-            <button id="toggleBot" class="btn btn-outline-primary mt-2" onclick="toggleBot()">
+            <button class="btn btn-outline-primary mt-2" id="toggleBot" onclick="toggleBot()">
                 Start Bot
             </button>
 
-            <button id="disconnect" class="btn btn-outline-primary mt-2" onclick="disconnect()">
+            <button class="btn btn-outline-primary mt-2" id="disconnect" onclick="disconnect()">
                 Disconnect Twitch
             </button>
         </div>

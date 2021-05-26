@@ -53,7 +53,7 @@ autoUpdater.on("download-progress", (progressObj) => {
 })
 
 
-app.on('ready',  () => {
+app.on('ready', () => {
 
     updater.webContents.receive("okForUpdate", (boolean) => {
         if (boolean) autoUpdater.downloadUpdate();

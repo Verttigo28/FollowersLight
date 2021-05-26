@@ -112,7 +112,7 @@ function sendError(error, type) {
     mainWindow.webContents.send("error", error, type);
 }
 
-exports.sendErrorT = (error, type) =>{
+exports.sendErrorT = (error, type) => {
     mainWindow.webContents.send("error", error, type);
 }
 

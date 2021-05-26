@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Baptiste Ferrando">
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="CSS/version.css">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="Baptiste Ferrando" name="author">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="CSS/version.css" rel="stylesheet">
     <title>Followers Light - Update page</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
     <div class="container">
 
         <h3 class="text-center">An update is available</h3>
-        <div id="subTitle" class="text-muted text-center">Updating to v1.0.0</div>
+        <div class="text-muted text-center" id="subTitle">Updating to v1.0.0</div>
 
         <div class="row mt-4 col-md-12">
             <h5>Changelog</h5>
@@ -33,12 +33,12 @@
         <div class="mt-3">
             <ul id="changelogList"></ul>
         </div>
-        <div id="progress" class="fixed-bottom mb-3" hidden>
+        <div class="fixed-bottom mb-3" hidden id="progress">
             <div class="progress">
-                <div id="progressbar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
-                     aria-valuemin="0" aria-valuemax="100"></div>
+                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="progress-bar" id="progressbar"
+                     role="progressbar" style="width: 0%"></div>
             </div>
-            <div id="percentage" class="text-center mt-2 text-muted">Download : 0%</div>
+            <div class="text-center mt-2 text-muted" id="percentage">Download : 0%</div>
         </div>
     </div>
 

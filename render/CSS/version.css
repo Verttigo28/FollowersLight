@@ -4,10 +4,12 @@ html {
     position: relative;
     min-height: 100%;
 }
+
 body {
     /* Margin bottom by footer height */
     margin-top: 70px;
 }
+
 header {
     position: absolute;
     width: 100%;
@@ -15,10 +17,10 @@ header {
     height: 60px;
 }
 
-.center{
+.center {
     margin-top: 12px;
 }
 
-.container{
+.container {
     margin-left: 8%;
 }

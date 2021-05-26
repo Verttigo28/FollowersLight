@@ -12,6 +12,6 @@ window.api.receive("callbackUpdate", (available) => {
 
 
 window.api.receive("error", (error, type) => {
-   alert(type + " : " + error);
-   location.reload();
+    alert(type + " : " + error);
+    location.reload();
 });
